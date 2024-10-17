@@ -3,7 +3,6 @@ import db from "../config/db.js";
 export const studentList = async (req, res) => {
   try {
     const data = await db.query("SELECT * from students");
-    // console.log(data,"666");
     if (data[0].length === 0) {
       return res.status(404).send({
         message: "No students found",
@@ -102,8 +101,6 @@ export const updateStudent = async (req, res) => {
   try {
     const id = req.params.id;
     const { name, roll_no, fees, class: className, medium } = req.body;
-
-    console.log(id, fees);
 
     const data = await db.query(
       "UPDATE students SET name = ?,fees = ?,roll_no = ?,class = ?, medium = ? WHERE id = ?",
